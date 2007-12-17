@@ -7,7 +7,6 @@ Group: System/Libraries
 URL: http://www.recherche.enac.fr/log/facile/
 Source0: http://www.recherche.enac.fr/log/facile/distrib/%name-%version.tar.gz
 Patch0: facile-1.1-install.patch
-Buildroot:	%_tmppath/%name-%version-%release-root
 BuildRequires: ocaml
 Requires: ocaml
 
