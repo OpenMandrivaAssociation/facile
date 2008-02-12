@@ -12,7 +12,8 @@ BuildRequires: ocaml
 Requires: ocaml
 
 %description
-FaCiLe is a constraint programming library on integer and integer set finite domains written in OCaml.
+FaCiLe is a constraint programming library on integer and integer set finite
+domains written in OCaml.
 
 %files
 %defattr(-,root,root)
