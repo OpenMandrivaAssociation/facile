@@ -1,7 +1,7 @@
 Name: facile
 Summary: Constraint programming library
 Version: 1.1
-Release: %mkrel 2
+Release: %mkrel 3
 License: GPL
 Group: System/Libraries
 URL: http://www.recherche.enac.fr/log/facile/
