@@ -1,5 +1,5 @@
 Name: facile
-Summary: FaCiLe is a constraint programming library
+Summary: Constraint programming library
 Version: 1.1
 Release: %mkrel 2
 License: GPL
