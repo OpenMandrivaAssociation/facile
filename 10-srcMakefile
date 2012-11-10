@@ -1,0 +1,67 @@
+
+#!/bin/sh -e
+## 10-debianlike.dpatch by Steffen Joeris <steffen.joeris@skolelinux.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Here we make facile available for more architectures :=)
+
+if [ $# -lt 1 ]; then
+echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
+exit 1
+fi
+
+[ -f debian/patches/00patch-opts ] && . debian/patches/00patch-opts
+patch_opts="${patch_opts:--f --no-backup-if-mismatch}"
+
+case "$1" in
+      -patch) patch $patch_opts -p1 < $0;;
+      -unpatch) patch $patch_opts -p1 -R < $0;;
+      *)
+      echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
+      exit 1;;
+esac
+
+exit 0
+
+@DPATCH@
+---
+ src/Makefile |   11 	8 +	3 -	0 !
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+Index: facile-1.1/src/Makefile
+===================================================================
+--- facile-1.1.orig/src/Makefile	2009-08-12 05:24:51.000000000 -0400
++++ facile-1.1/src/Makefile	2009-08-12 05:27:22.000000000 -0400
+@@ -15,8 +15,13 @@ CSTR= fcl_debug.ml fcl_misc.ml fcl_domai
+ CSTRCMO = $(CSTR:.ml=.cmo)
+ CSTRCMX = $(CSTR:.ml=.cmx)
+ 
++CMXA =
++ifneq ($(wildcard /usr/bin/ocamlopt),)
++CMXA = facile.cmxa
++endif
++
+ # Default target: libraries and toplevel
+-all : facile.cma facile.cmxa facile
++all : facile.cma $(CMXA) facile
+ 
+ # Libraries
+ facile.cma : $(CSTRCMO)
+@@ -31,7 +36,7 @@ facile.p.cmxa : $(CSTR)
+ 	make facile.cmxa OPTOPT=-p
+ 	rm -fr $(CSTRCMX)
+ 	mv facile.cmxa $@
+-	mv facile.a facile.p.a
++	if [ -e facile.a ] ;  then mv facile.a facile.p.a ; fi
+ 
+ # Toplevel (to be run with the "-I +facile" option)
+ facile : facile.cma
+@@ -45,7 +50,7 @@ facile.exp.cmxa : $(CSTR)
+ 	make facile.cmxa OPTOPT="-pp inline_functors"
+ 	rm -fr $(CSTRCMX)
+ 	mv facile.cmxa $@
+-	mv facile.a facile.exp.a
++	if [ -e facile.a ] ; then mv facile.a facile.exp.a ; fi
+ 
+ .SUFFIXES:
+ .SUFFIXES: .ml .mli .mly .mll .cmi .cmo .cmx .p.cmx .s
