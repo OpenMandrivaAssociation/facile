@@ -1,3 +1,5 @@
+%define	debug_package %{nil}
+
 Summary:	Constraint programming library
 Name:		facile
 Version:	1.1
