@@ -3,7 +3,7 @@
 Summary:	Constraint programming library
 Name:		facile
 Version:	1.1
-Release:	13
+Release:	14
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://www.recherche.enac.fr/log/facile/
@@ -12,6 +12,7 @@ Patch0:		facile-1.1-install.patch
 Patch1:		10-srcMakefile
 Patch2:		20-Makefile
 Patch3:		30-non-opt-check
+Patch4:		Hashtbl_create_for_ocaml_4.00.patch
 BuildRequires:	ocaml
 Requires:	ocaml
 
