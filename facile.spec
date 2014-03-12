@@ -8,6 +8,7 @@ License:	GPLv2+
 Group:		System/Libraries
 Url:		http://www.recherche.enac.fr/log/facile/
 Source0:	http://www.recherche.enac.fr/log/facile/distrib/%name-%version.tar.gz
+Source1:	facile.rpmlintrc
 Patch0:		facile-1.1-install.patch
 Patch1:		10-srcMakefile
 Patch2:		20-Makefile
