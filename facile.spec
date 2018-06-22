@@ -1,5 +1,8 @@
 %define	debug_package %{nil}
 
+# The ocaml(*) dependency generator seems to be broken
+%global __requires_exclude ^ocaml.*$
+
 Summary:	Constraint programming library
 Name:		facile
 Version:	1.1.3
@@ -16,7 +19,7 @@ Patch1:		10-srcMakefile
 Patch2:		20-Makefile
 Patch3:		30-non-opt-check
 BuildRequires:	ocaml
-Requires:	ocaml
+Requires:	ocaml ocaml-compiler-libs
 
 %description
 FaCiLe is a constraint programming library on integer and integer set finite
