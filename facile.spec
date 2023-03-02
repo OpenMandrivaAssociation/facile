@@ -5,19 +5,16 @@
 
 Summary:	Constraint programming library
 Name:		facile
-Version:	1.1.3
-Release:	5
+Version:	1.1.4
+Release:	1
 License:	GPLv2+
 Group:		System/Libraries
-Url:		http://www.recherche.enac.fr/log/facile/
+Url:		http://facile.recherche.enac.fr/
 # Git repository at
 #Source0:	https://github.com/Emmanuel-PLF/facile/archive/%{version}.tar.gz
-Source0:	http://opti.recherche.enac.fr/facile/distrib/%{name}-%{version}.tar.gz
+Source0:	https://github.com/Emmanuel-PLF/facile/releases/download/%{version}/facile-%{version}.tbz
 Source1:	facile.rpmlintrc
-Patch0:		facile-1.1-install.patch
 Patch1:		10-srcMakefile
-Patch2:		20-Makefile
-Patch3:		30-non-opt-check
 BuildRequires:	ocaml
 Requires:	ocaml ocaml-compiler-libs
 
@@ -27,19 +24,21 @@ domains written in OCaml.
 
 %prep
 %autosetup -p1
+# "Pervasives" has been dropped in ocaml 5.0
+sed -i -e 's,Pervasives,Stdlib,g' lib/*.ml
 
 %build
-./configure
+cd lib
 
 %ifarch %arm %mips
-%make OCAMLC="ocamlc -g" OCAMLMLI=ocamlc
+%make_build OCAMLC="ocamlc -g" OCAMLMLI=ocamlc
 %else
-%make
+%make_build
 %endif
 
 %install
-%makeinstall_std
+mkdir -p %{buildroot}%{_libdir}/ocaml/facile
+cp -a lib/facile.{a,cma,cmi,cmxa} lib/*.mli %{buildroot}%{_libdir}/ocaml/facile/
 
 %files
 %{_libdir}/ocaml/facile
-
