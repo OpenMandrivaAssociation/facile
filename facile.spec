@@ -9,7 +9,7 @@ Version:	1.1.4
 Release:	5
 License:	GPLv2+
 Group:		System/Libraries
-Url:		http://facile.recherche.enac.fr/
+Url:		https://facile.recherche.enac.fr/
 # Git repository at
 #Source0:	https://github.com/Emmanuel-PLF/facile/archive/%{version}.tar.gz
 Source0:	https://github.com/Emmanuel-PLF/facile/releases/download/%{version}/facile-%{version}.tbz
