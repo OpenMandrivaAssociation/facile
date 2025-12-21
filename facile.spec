@@ -15,6 +15,7 @@ Url:		https://facile.recherche.enac.fr/
 Source0:	https://github.com/Emmanuel-PLF/facile/releases/download/%{version}/facile-%{version}.tbz
 Source1:	facile.rpmlintrc
 Patch1:		10-srcMakefile
+BuildRequires:	make
 BuildRequires:	ocaml
 Requires:	ocaml ocaml-compiler-libs
 
