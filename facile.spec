@@ -1,4 +1,6 @@
 %define	debug_package %{nil}
+# find-debuginfo cannot strip the OCaml .a and fails the build.
+%define	dont_strip 1
 
 # The ocaml(*) dependency generator seems to be broken
 %global __requires_exclude ^ocaml.*$
@@ -6,7 +8,7 @@
 Summary:	Constraint programming library
 Name:		facile
 Version:	1.1.4
-Release:	8
+Release:	9
 License:	GPLv2+
 Group:		System/Libraries
 Url:		https://facile.recherche.enac.fr/
